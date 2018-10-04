@@ -2,6 +2,13 @@
 
 @section('content')
 <div class="container">
+
+        {!! Form::open(['url' => 'foo/bar']) !!}
+
+
+
+        {!! Form::model($user, ['route' => ['user.update', $user->id]]) !!}
+
     <form action="">
         <div class="form-group">
             <label for="exampleInputEmail1">Nome</label>
