@@ -1,13 +1,15 @@
 @extends('adminlte::page')
 
 @section('content')
+
 <div class="container">
 
-        {!! Form::open(['url' => 'foo/bar']) !!}
-
-
-
-        {!! Form::model($user, ['route' => ['user.update', $user->id]]) !!}
+        {!! Form::model($usuario, ['route' => ['usuarios.update','usuario'=> $usuario->id], 'class' => 'form', 'method' => 'PUT']) !!}
+        <div class="form-group">
+            {!! Form::label('nome', 'Nome do Usuário'); !!}
+            {!! Form::text('nome', '', ['class' => 'awesome']); !!}
+        </div>
+        {!! Form::close() !!}
 
     <form action="">
         <div class="form-group">

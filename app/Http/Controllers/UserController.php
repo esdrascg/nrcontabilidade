@@ -59,11 +59,9 @@ class UserController extends Controller
      */
     public function edit(User $usuario)
     {
-        if(!($usuario = User::find($usuario))){
-            //exit;
+        //if(!($usuario = User::find($usuario))){
 
-            //
-        }
+        //}
 
         return view('admin.users.edit', compact('usuario') );
     }
