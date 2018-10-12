@@ -3,12 +3,12 @@
 @section('content')
 <div class="container">
 
-                {!! Form::model($usuario, ['route' => ['usuarios.update', 'usuario'=>$usuario->id], 'class'=>'form', 'method'=>'PUT' ]) !!}
+                {!! Form::model($cliente, ['route' => ['clientes.update', 'cliente'=>$cliente->id], 'class'=>'form', 'method'=>'PUT' ]) !!}
                 <div class="box-body">
 
                   <div class="form-group">
-                    {!! Form::label('name', 'Nome Completo'); !!}
-                    {!! Form::text('name',null,['class'=>'form-control']); !!}
+                    {!! Form::label('nome', 'Nome do Cliente'); !!}
+                    {!! Form::text('nome',null,['class'=>'form-control']); !!}
                   </div>
 
                 </div>

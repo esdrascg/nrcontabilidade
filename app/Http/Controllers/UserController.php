@@ -59,11 +59,11 @@ class UserController extends Controller
      */
     public function edit(User $usuario)
     {
-        if(!($usuario = User::find($usuario))){
+        //if(!($usuario = User::find($usuario))){
             //exit;
 
             //
-        }
+        //}
 
         return view('admin.users.edit', compact('usuario') );
     }
@@ -81,7 +81,9 @@ class UserController extends Controller
         $usuario->fill($data);
         $usuario->save();
 
-        return view('admin.users.index', ['usuario' => $usuario]);
+        //return view('admin.users.edit', ['usuario' => $usuario]);
+
+        return redirect()->route('usuarios.index');
 
     }
 
