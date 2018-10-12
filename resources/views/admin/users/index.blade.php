@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-
-        <div class="box-body no-padding">
+  <a href="{{ route('usuarios.create') }}"><button type="button" class="btn btn-primary">Criar Usuário</button></a>
+            <div class="box-body no-padding">
               <table class="table">
                 <tbody>
                   <tr>
