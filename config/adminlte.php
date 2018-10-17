@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'NrContabilidade',
+    'title' => 'Sistema Teste',
 
     'title_prefix' => '',
 
@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>Nr</b>Contabilidade',
+    'logo' => '<b>Sis</b>Teste',
 
-    'logo_mini' => '<b>Nr</b>C',
+    'logo_mini' => '<b>Sis</b>C',
 
     /*
     |--------------------------------------------------------------------------

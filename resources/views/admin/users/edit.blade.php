@@ -6,23 +6,17 @@
 
         {!! Form::model($usuario, ['route' => ['usuarios.update','usuario'=> $usuario->id], 'class' => 'form', 'method' => 'PUT']) !!}
         <div class="form-group">
-            {!! Form::label('nome', 'Nome do Usuário'); !!}
-            {!! Form::text('nome', '', ['class' => 'awesome']); !!}
+            {!! Form::label('name', 'Nome do Usuário'); !!}
+            {!! Form::text('name', null, ['class' => 'form-control']); !!}
+        </div>
+        <div class="form-group">
+                {!! Form::label('email', 'E-mail'); !!}
+                {!! Form::text('email', null, ['class' => 'form-control']); !!}
+            </div>
+        <div class="form-group">
+            {!! Form::submit('Editar', ['class'=>'btn btn-primary'] ); !!}
         </div>
         {!! Form::close() !!}
 
-    <form action="">
-        <div class="form-group">
-            <label for="exampleInputEmail1">Nome</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Senha</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div>
-
-        <button type="submit" class="btn btn-primary">Editar</button>
-    </form>
 </div>
 @endsection

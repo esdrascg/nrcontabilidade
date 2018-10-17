@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
     /**
@@ -37,7 +37,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create($request->all());
+        return redirect()->route('usuarios.index');
     }
 
     /**
@@ -79,7 +80,9 @@ class UserController extends Controller
         $usuario->fill($data);
         $usuario->save();
 
-        return view('admin.users.index', ['usuario' => $usuario]);
+        return redirect()->route('usuarios.index');
+
+        //return view('admin.users.index', ['usuario' => $usuario]);
 
     }
 
@@ -91,6 +94,7 @@ class UserController extends Controller
      */
     public function destroy(User $usuario)
     {
-        //
+        $usuario->delete();
+        return redirect()->route('usuarios.index');
     }
 }
