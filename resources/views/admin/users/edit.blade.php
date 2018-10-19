@@ -15,6 +15,7 @@
         @endif
 
         {!! Form::model($usuario, ['route' => ['usuarios.update','usuario'=> $usuario->id], 'class' => 'form', 'method' => 'PUT']) !!}
+        {!! Form::hidden('redirect_to', URL::previous()); !!}
         <div class="form-group">
             {!! Form::label('name', 'Nome do Usuário'); !!}
             {!! Form::text('name', null, ['class' => 'form-control']); !!}

@@ -45,7 +45,10 @@ class UserController extends Controller
     {
 
         User::create($request->all());
-        return redirect()->route('usuarios.index');
+
+        $url = $request->get('redirect_to', route('usuarios.index'));
+        $request->session()->flash('message', 'Usuário cadastrado com sucesso!');
+        return redirect()->to($url);
     }
 
     /**
@@ -87,7 +90,10 @@ class UserController extends Controller
         $usuario->fill($data);
         $usuario->save();
 
-        return redirect()->route('usuarios.index');
+        $url = $request->get('redirect_to', route('usuarios.index'));
+        return redirect()->to($url);
+
+        //return redirect()->route('usuarios.index');
 
         //return view('admin.users.index', ['usuario' => $usuario]);
 
@@ -102,6 +108,6 @@ class UserController extends Controller
     public function destroy(User $usuario)
     {
         $usuario->delete();
-        return redirect()->route('usuarios.index');
+        return redirect()->to(\URL::previous());
     }
 }

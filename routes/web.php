@@ -13,11 +13,14 @@
 
 Route::get('/', function () {
     return view('welcome');
+
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Grupos de rotas - Controllers
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('categorias', 'CategoriaController');
