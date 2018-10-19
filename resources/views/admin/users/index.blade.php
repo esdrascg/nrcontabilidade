@@ -3,22 +3,19 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <a href="{{ route('usuarios.create') }}"><button type="button" class="btn btn-primary">Criar Usuário</button></a>
+        Usuário Logado: {{$logado}}
     </div>
-    <div class="row">
-        <div class="col-4"></div>
-        <div class="col-4"></div>
-        <div class="col-4"></div>
-        <div class="col-4"></div>
+    <div class="box-header with-border">
+        <a href="{{ route('usuarios.create') }}"><button type="button" class="btn btn-primary">Criar Usuário</button></a>
     </div>
     <div class="box box-primary">
         <table class="table table-condensed">
             <tbody><tr>
-                <th style="width: 10px">#</th>
+                <th style="width: 10px"></th>
                 <th>Nome</th>
                 <th>Email</th>
-                <th>#</th>
-                <th>#</th>
+                <th style="width: 10px"></th>
+                <th style="width: 10px"></th>
             </tr>
             @foreach ($usuarios as $usuario)
 
@@ -29,11 +26,23 @@
                 <td>{{ $usuario->id }}</td>
                 <td>{{ $usuario->name }}</td>
                 <td>{{ $usuario->email }}</td>
-                <td><a href="{{ route('usuarios.edit', ['usuario'=>$usuario->id]) }}"><button type="button" class="btn btn-primary">Editar</button></a></td>
+                <td>
+                    <a href="{{ route('usuarios.edit', ['usuario'=>$usuario->id]) }}">
+                        <button type="button" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                    </a>
+                </td>
                 <td>
                     {!! Form::open(['route' => ['usuarios.destroy', 'usuario' => $usuario->id], 'id'=>$nomeformdelete, 'class' => 'form', 'method' => 'DELETE']) !!}
-                        {!! Form::submit('Excluir', ['class'=>'btn btn-danger'] ); !!}
+
+
                     {!! Form::close() !!}
+
+                    <button type="button" onclick="document.getElementById('{{$nomeformdelete}}').submit();" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+
                 </td>
             </tr>
             @endforeach

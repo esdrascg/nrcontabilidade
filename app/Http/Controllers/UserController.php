@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+
 
 class UserController extends Controller
 {
@@ -14,8 +16,12 @@ class UserController extends Controller
      */
     public function index()
     {
+
+        $logado = auth()->user()->name;
+
         $usuarios = User::paginate(5);
-        return view('admin.users.index', ['usuarios' => $usuarios]);
+
+        return view('admin.users.index', compact('usuarios','logado'));
 
     }
 
@@ -35,14 +41,8 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-
-        $this->validate($request, [
-            'name' => 'required|unique:users|min:3|max:100',
-            'email' => 'required|unique:users,email|email',
-            'password' => 'required',
-        ]);
 
         User::create($request->all());
         return redirect()->route('usuarios.index');
@@ -81,7 +81,7 @@ class UserController extends Controller
      * @param  \App\User  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $usuario)
+    public function update(UserRequest $request, User $usuario)
     {
         $data = $request->all();
         $usuario->fill($data);
