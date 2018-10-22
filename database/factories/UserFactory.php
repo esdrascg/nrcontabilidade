@@ -16,9 +16,9 @@ use Faker\Generator as Faker;
 $factory->define(App\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
+        //'email' => $faker->unique()->safeEmail,
         'password' => bcrypt('secret'), //'$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
-        'remember_token' => str_random(5),
+        //'remember_token' => str_random(5),
     ];
 });
 
@@ -32,8 +32,8 @@ $factory->define(App\Documento::class, function (Faker $faker) {
     return [
         'nome' => $faker->word,
         'descricao' => $faker->word,
-        'id_cliente' => 1,
-        'id_categoria' => 2,
+        //'id_cliente' => 1,
+        //'id_categoria' => 2,
     ];
 });
 
@@ -43,5 +43,3 @@ $factory->define(App\Categoria::class, function (Faker $faker) {
 
     ];
 });
-
-
