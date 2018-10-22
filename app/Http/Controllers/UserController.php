@@ -19,7 +19,7 @@ class UserController extends Controller
 
         $logado = auth()->user()->name;
 
-        $usuarios = User::paginate(5);
+        $usuarios = User::paginate(10);
 
         return view('admin.users.index', compact('usuarios','logado'));
 
@@ -48,6 +48,8 @@ class UserController extends Controller
 
         $url = $request->get('redirect_to', route('usuarios.index'));
         $request->session()->flash('message', 'Usuário cadastrado com sucesso!');
+
+        //\Session::flash('message', 'Usuário cadastrado com sucesso!');
         return redirect()->to($url);
     }
 
@@ -90,6 +92,7 @@ class UserController extends Controller
         $usuario->save();
 
         $url = $request->get('redirect_to', route('usuarios.index'));
+
         return redirect()->to($url);
 
         //return redirect()->route('usuarios.index');
@@ -107,6 +110,9 @@ class UserController extends Controller
     public function destroy(User $usuario)
     {
         $usuario->delete();
+
+        \Session::flash('message', 'Usuário excluído com sucesso!');
+
         return redirect()->to(\URL::previous());
     }
 }

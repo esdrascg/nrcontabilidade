@@ -81,10 +81,10 @@
             </div>
         </nav>
 
-        @if($message = Session::get('message'))
+        @if(Session::has('message'))
             <div class="container">
                 <div class="alert alert-success">
-                    {{ $message }}
+                    {{ Session::get('message') }}
                 </div>
             </div>
         @endif
