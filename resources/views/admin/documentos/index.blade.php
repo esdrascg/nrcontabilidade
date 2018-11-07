@@ -3,35 +3,35 @@
 @section('content')
 <div class="container">
     <div class="box-header with-border">
-        <a href="{{ route('categorias.create') }}"><button type="button" class="btn btn-primary">Novo Categoria</button></a>
+        <a href="{{ route('documentos.create') }}"><button type="button" class="btn btn-primary">Novo Documento</button></a>
     </div>
     <div class="box box-primary">
         <table class="table table-condensed">
             <tbody><tr>
                 <th style="width: 10px"></th>
                 <th>Nome</th>
-                <th>-</th>
+                <th>Email</th>
                 <th style="width: 10px"></th>
                 <th style="width: 10px"></th>
             </tr>
-            @foreach ($categorias as $categoria)
+            @foreach ($documentos as $documento)
 
-            <?php $nomeformdelete = 'form_delete_'.$categoria->id ?>
+            <?php $nomeformdelete = 'form_delete_'.$documento->id ?>
 
 
             <tr>
-                <td>{{ $categoria->id }}</td>
-                <td>{{ $categoria->nome }}</td>
-                <td>{{ $categoria->descricao }}</td>
+                <td>{{ $documento->id }}</td>
+                <td>{{ $documento->nome }}</td>
+                <td>{{ $documento->descricao }}</td>
                 <td>
-                    <a href="{{ route('categorias.edit', ['categorias'=>$categoria->id]) }}">
+                    <a href="{{ route('documentos.edit', ['documentos'=>$documento->id]) }}">
                         <button type="button" class="btn btn-primary">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </button>
                     </a>
                 </td>
                 <td>
-                    {!! Form::open(['route' => ['categorias.destroy', 'categoria' => $categoria->id], 'id'=>$nomeformdelete, 'class' => 'form', 'method' => 'DELETE']) !!}
+                    {!! Form::open(['route' => ['documentos.destroy', 'documento' => $documento->id], 'id'=>$nomeformdelete, 'class' => 'form', 'method' => 'DELETE']) !!}
 
 
                     {!! Form::close() !!}
@@ -46,5 +46,5 @@
             </tbody>
         </table>
     </div>
-    {{ $categorias->links() }}
+    {{ $documentos->links() }}
 @endsection

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Documento;
+use App\Models\Documento;
 use Illuminate\Http\Request;
 
 class DocumentoController extends Controller
@@ -14,7 +14,10 @@ class DocumentoController extends Controller
      */
     public function index()
     {
-        //
+
+        $documentos = Documento::paginate(10);
+
+        return view('admin.documentos.index', compact('documentos'));
     }
 
     /**
@@ -41,7 +44,7 @@ class DocumentoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Documento  $documento
+     * @param  \App\Models\Documento  $documento
      * @return \Illuminate\Http\Response
      */
     public function show(Documento $documento)
@@ -52,7 +55,7 @@ class DocumentoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Documento  $documento
+     * @param  \App\Models\Documento  $documento
      * @return \Illuminate\Http\Response
      */
     public function edit(Documento $documento)
@@ -64,7 +67,7 @@ class DocumentoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Documento  $documento
+     * @param  \App\Models\Documento  $documento
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Documento $documento)
@@ -75,7 +78,7 @@ class DocumentoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Documento  $documento
+     * @param  \App\Models\Documento  $documento
      * @return \Illuminate\Http\Response
      */
     public function destroy(Documento $documento)

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserUpdateRequest;
 
 
 class UserController extends Controller
@@ -56,7 +57,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\User  $categoria
+     * @param  \App\Models\User  $categoria
      * @return \Illuminate\Http\Response
      */
     public function show(User $usuario)
@@ -67,7 +68,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\User  $categoria
+     * @param  \App\Models\User  $categoria
      * @return \Illuminate\Http\Response
      */
     public function edit(User $usuario)
@@ -82,10 +83,10 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $categoria
+     * @param  \App\Models\User  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, User $usuario)
+    public function update(UserUpdateRequest $request, User $usuario)
     {
         $data = $request->all();
         $usuario->fill($data);

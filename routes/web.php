@@ -34,3 +34,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', 'UserController');
 });
 
+Route::group(['middleware' => ['auth']], function () {
+    Route::resource('documentos', 'DocumentoController');
+});
+

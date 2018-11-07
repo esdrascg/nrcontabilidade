@@ -148,6 +148,11 @@ return [
             'icon' => 'user',
         ],
         [
+            'text' => 'Documentos',
+            'url'  => 'documentos',
+            'icon' => 'user',
+        ],
+        [
             'text'    => 'Multilevel',
             'icon'    => 'share',
             'submenu' => [

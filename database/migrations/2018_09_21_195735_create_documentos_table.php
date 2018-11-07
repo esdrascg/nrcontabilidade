@@ -17,10 +17,11 @@ class CreateDocumentosTable extends Migration
             $table->increments('id');
             $table->string('nome');
             $table->string('descricao')->nullable();
+            $table->integer('id_categoria');
+            $table->foreign('id_categoria')->references('id')->on('categorias');
             //$table->integer('id_cliente');
             //$table->foreign('id_cliente')->references('id')->on('clientes');
-            //$table->integer('id_categoria');
-            //$table->foreign('id_categoria')->references('id')->on('categorias');
+
 
             $table->timestamps();
         });
