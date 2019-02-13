@@ -14,9 +14,8 @@ class Documento extends Model
      */
     protected $fillable = [
         'id',
-        'name',
-        'email',
-        'password',
+        'nome',
+        'descricao',
     ];
 
     /**
@@ -25,10 +24,14 @@ class Documento extends Model
      * @var array
      */
     protected $hidden = [
-        'id','password', 'remember_token',
+        'id',
+        'nome',
+        'descricao',
     ];
 
-    public function livros(){
-        return $this->belongsTo(User::class);
+    public function categorias(){
+        return $this->belongsToMany(Categoria::class);
     }
+
+
 }

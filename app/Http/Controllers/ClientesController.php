@@ -4,40 +4,42 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Cliente;
 use App\Http\Requests;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
-use App\Http\Requests\DocumentoCreateRequest;
-use App\Http\Requests\DocumentoUpdateRequest;
-use App\Repositories\DocumentoRepository;
+use App\Http\Requests\ClienteCreateRequest;
+use App\Http\Requests\ClienteUpdateRequest;
+use App\Repositories\ClienteRepository;
+
 
 /**
- * Class DocumentosController.
+ * Class ClientesController.
  *
  * @package namespace App\Http\Controllers;
  */
-class DocumentosController extends Controller
+class ClientesController extends Controller
 {
     /**
-     * @var DocumentoRepository
+     * @var ClienteRepository
      */
     protected $repository;
 
     /**
-     * @var DocumentoValidator
+     * @var ClienteValidator
      */
     protected $validator;
 
     /**
-     * DocumentosController constructor.
+     * ClientesController constructor.
      *
-     * @param DocumentoRepository $repository
-     * @param DocumentoValidator $validator
+     * @param ClienteRepository $repository
+     * @param ClienteValidator $validator
      */
-    public function __construct(DocumentoRepository $repository)
+    public function __construct(ClienteRepository $repository)
     {
         $this->repository = $repository;
-        //$this->validator  = $validator;
+
     }
 
     /**
@@ -47,39 +49,31 @@ class DocumentosController extends Controller
      */
     public function index()
     {
-        //$this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
 
-        $documentos = $this->repository->paginate(10);
-
-        return view('admin.documentos.index', compact('documentos'));
-    }
-
-
-    public function create()
-    {
-        return view('admin.documentos.create');
+        $clientes = Cliente::paginate(5);
+        return view('admin.clientes.index', ['clientes' => $clientes]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  DocumentoCreateRequest $request
+     * @param  ClienteCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(DocumentoCreateRequest $request)
+    public function store(ClienteCreateRequest $request)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $documento = $this->repository->create($request->all());
+            $cliente = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'Documento criado.',
-                'data'    => $documento->toArray(),
+                'message' => 'Cliente created.',
+                'data'    => $cliente->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -87,7 +81,7 @@ class DocumentosController extends Controller
                 return response()->json($response);
             }
 
-            return redirect()->back()->with('message', $response['message']);
+            return redirect()->to(\URL::previous())->with('message', $response['message']);
         } catch (ValidatorException $e) {
             if ($request->wantsJson()) {
                 return response()->json([
@@ -96,7 +90,7 @@ class DocumentosController extends Controller
                 ]);
             }
 
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+            return redirect()->to(\URL::previous())->withErrors($e->getMessageBag())->withInput();
         }
     }
 
@@ -109,16 +103,16 @@ class DocumentosController extends Controller
      */
     public function show($id)
     {
-        $documento = $this->repository->find($id);
+        $cliente = $this->repository->find($id);
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $documento,
+                'data' => $cliente,
             ]);
         }
 
-        return view('documentos.show', compact('documento'));
+        return view('clientes.show', compact('cliente'));
     }
 
     /**
@@ -130,41 +124,43 @@ class DocumentosController extends Controller
      */
     public function edit($id)
     {
-        $documento = $this->repository->find($id);
+        $cliente = $this->repository->find($id);
 
-        return view('admin.documentos.edit', compact('documento'));
+        return view('admin.clientes.edit', compact('cliente'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  DocumentoUpdateRequest $request
+     * @param  ClienteUpdateRequest $request
      * @param  string            $id
      *
      * @return Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(DocumentoUpdateRequest $request, $id)
+    public function update(ClienteUpdateRequest $request, $id)
     {
         try {
 
             //$this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $documento = $this->repository->update($request->all(), $id);
+            $cliente = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'Documento alterado.',
-                'data'    => $documento->toArray(),
+                'message' => 'Cliente atualizado.',
+                'data'    => $cliente->toArray(),
             ];
 
             if ($request->wantsJson()) {
-
                 return response()->json($response);
             }
 
-            $url = $request->get('redirect_to', route('documentos.index'));
-            $request->session()->flash('message', 'Documento alterado!');
+            //$url = $request->get('redirect_to', route('clientes.index'));
+            //return redirect()->to(\URL::previous())->with('message', $response['message']);
+
+            $url = $request->get('redirect_to', route('clientes.index'));
+            $request->session()->flash('message', 'Cliente atualizado!');
             return redirect()->to($url);
 
         } catch (ValidatorException $e) {
@@ -177,11 +173,16 @@ class DocumentosController extends Controller
                 ]);
             }
 
-            return redirect()->to(\URL::previous());
-            //return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
-    }
+            //não exibe o array
+            //dd($e->getMessageBag());
 
+            $url = $request->get('redirect_to', route('clientes.index'));
+            return redirect()->to($url)->withErrors($e->getMessageBag())->withInput();
+
+
+        }
+
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -197,15 +198,11 @@ class DocumentosController extends Controller
         if (request()->wantsJson()) {
 
             return response()->json([
-                'message' => 'Documento deleted.',
+                'message' => 'Cliente deleted.',
                 'deleted' => $deleted,
             ]);
         }
 
-
-        \Session::flash('message', 'Documento excluído!');
-
-        return redirect()->to(\URL::previous());
-
+        return redirect()->to(\URL::previous())->with('message', 'Cliente deleted.');
     }
 }

@@ -11,6 +11,6 @@ class ClientesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Cliente::class,20)->create();
+        factory(\App\Models\Cliente::class,20)->create();
     }
 }

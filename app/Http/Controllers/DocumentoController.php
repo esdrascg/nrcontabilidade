@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class DocumentoController extends Controller
 {
+
+    public function __construct(DocumentoRepository $repository )
+    {
+        $this->repository = $repository;
+
+    }
     /**
      * Display a listing of the resource.
      *

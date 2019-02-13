@@ -150,6 +150,10 @@ return [
         /*
          * Package Service Providers...
          */
+        Collective\Html\HtmlServiceProvider::class,
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
+
+
 
         /*
          * Application Service Providers...
@@ -159,8 +163,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\RepositoryServiceProvider::class,
 
-        Collective\Html\HtmlServiceProvider::class,
+
 
     ],
 

@@ -28,13 +28,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('categorias', 'CategoriaController');
 });
 Route::group(['middleware' => ['auth']], function () {
-    Route::resource('clientes', 'ClienteController');
+    Route::resource('clientes', 'ClientesController');
 });
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', 'UserController');
 });
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::resource('documentos', 'DocumentoController');
+    Route::resource('documentos', 'DocumentosController');
 });
-

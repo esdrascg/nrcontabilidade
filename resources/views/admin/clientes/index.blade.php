@@ -14,7 +14,7 @@
           <tr>
             <td>{{ $cliente->id }}</td>
             <td>{{ $cliente->nome }}</td>
-            <td><a href="{{ route('usuarios.edit', ['cliente'=>$cliente->id]) }}"><span class="badge bg-red">Editar</span></a></td>
+            <td><a href="{{ route('clientes.edit', ['cliente'=>$cliente->id]) }}"><span class="badge bg-red">Editar</span></a></td>
           </tr>
         @endforeach
         </tbody>

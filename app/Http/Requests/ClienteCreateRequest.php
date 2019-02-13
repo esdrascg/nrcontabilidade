@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DocumentoCreateRequest extends FormRequest
+class ClienteCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,7 @@ class DocumentoCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome' => 'required|unique:documentos,nome',
-            'descricao' => 'required'
+            //
         ];
     }
 }

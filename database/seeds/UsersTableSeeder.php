@@ -13,7 +13,8 @@ class UsersTableSeeder extends Seeder
     {
         factory(\App\Models\User::class,1)->create([
             'email' => 'admin@admin.com',
-            'name' => 'esdras'
+            'name' => 'esdras',
+            'password' => bcrypt('secret')
          ]);
 
     }

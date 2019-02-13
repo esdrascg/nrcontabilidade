@@ -13,7 +13,7 @@ class DocumentoUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class DocumentoUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nome' => 'required',
+            'descricao' => 'required'
         ];
     }
 }

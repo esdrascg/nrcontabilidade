@@ -18,15 +18,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-    <!-- Bootstrap core CSS -->
-    <link href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="https://getbootstrap.com/docs/4.1/examples/grid/grid.css" rel="stylesheet">
-
-
-
 </head>
 <body>
     <div id="app">
@@ -80,14 +71,6 @@
                 </div>
             </div>
         </nav>
-
-        @if(Session::has('message'))
-            <div class="container">
-                <div class="alert alert-success">
-                    {{ Session::get('message') }}
-                </div>
-            </div>
-        @endif
 
         <main class="py-4">
             @yield('content')

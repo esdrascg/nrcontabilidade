@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,4 +15,11 @@ class Categoria extends Model
     protected $fillable = [
         'id','name',
     ];
+
+
+
+    public function documentos(){
+        return $this->belongsToMany(Documento::class);
+    }
 }
+

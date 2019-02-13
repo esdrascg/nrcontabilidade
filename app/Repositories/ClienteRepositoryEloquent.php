@@ -4,14 +4,16 @@ namespace App\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Models\Documento;
+use App\Repositories\ClienteRepository;
+use App\Models\Cliente;
+use App\Validators\ClienteValidator;
 
 /**
- * Class DocumentoRepositoryEloquent.
+ * Class ClienteRepositoryEloquent.
  *
  * @package namespace App\Repositories;
  */
-class DocumentoRepositoryEloquent extends BaseRepository implements DocumentoRepository
+class ClienteRepositoryEloquent extends BaseRepository implements ClienteRepository
 {
     /**
      * Specify Model class name
@@ -20,10 +22,10 @@ class DocumentoRepositoryEloquent extends BaseRepository implements DocumentoRep
      */
     public function model()
     {
-        return Documento::class;
+        return Cliente::class;
     }
 
-
+    
 
     /**
      * Boot up the repository, pushing criteria
@@ -32,5 +34,5 @@ class DocumentoRepositoryEloquent extends BaseRepository implements DocumentoRep
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-
+    
 }
