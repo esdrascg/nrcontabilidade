@@ -24,7 +24,7 @@ class ClienteCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nome' => 'required|unique:clientes,nome|min:5',
         ];
     }
 }

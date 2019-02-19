@@ -148,7 +148,7 @@ class ClientesController extends Controller
             $cliente = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'Cliente atualizado.',
+                'message' => 'Cliente atualizado msg.',
                 'data'    => $cliente->toArray(),
             ];
 
@@ -173,11 +173,8 @@ class ClientesController extends Controller
                 ]);
             }
 
-            //não exibe o array
-            //dd($e->getMessageBag());
-
             $url = $request->get('redirect_to', route('clientes.index'));
-            return redirect()->to($url)->withErrors($e->getMessageBag())->withInput();
+            return redirect()->to($url)->withErrors()->withInput();
 
 
         }
