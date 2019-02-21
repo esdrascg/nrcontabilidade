@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row">
         Usuário Logado: {{$logado}}
+        - {{$codigo_usuario}}
     </div>
     <div class="box-header with-border">
         <a href="{{ route('usuarios.create') }}"><button type="button" class="btn btn-primary">Criar Usuário</button></a>

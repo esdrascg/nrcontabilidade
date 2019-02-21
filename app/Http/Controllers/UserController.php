@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserUpdateRequest;
+use App\Repositories\UserRepository;
 
 
 class UserController extends Controller
 {
+    public function __construct(UserRepository $repository)
+    {
+        $this->repository = $repository;
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,9 +26,13 @@ class UserController extends Controller
 
         $logado = auth()->user()->name;
 
-        $usuarios = User::paginate(10);
+        $codigo_usuario = \Auth::user()->id;
 
-        return view('admin.users.index', compact('usuarios','logado'));
+        //$usuarios = User::paginate(10);
+
+        $usuarios = $this->repository->paginate(10);
+
+        return view('admin.users.index', compact('usuarios','logado', 'codigo_usuario' ) );
 
     }
 

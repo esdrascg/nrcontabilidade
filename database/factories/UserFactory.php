@@ -28,23 +28,32 @@ $factory->define(\App\Models\Cliente::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(\App\Models\Documento::class, function (Faker $faker) {
-
-    $repository = app(\App\Repositories\DocumentoRepository::class);
-
-    //$userId = $repository->all()->random()->id;
-
-    return [
-        'nome' => $faker->word,
-        'descricao' => $faker->word,
-        //'id_cliente' => 1,
-        'id_categoria' => 2,
-    ];
-});
-
 $factory->define(\App\Models\Categoria::class, function (Faker $faker) {
     return [
         'nome' => $faker->word,
 
     ];
 });
+
+$factory->define(\App\Models\Documento::class, function (Faker $faker) {
+
+    //código do cliente
+    $repositoryCliente = app(\App\Repositories\ClienteRepository::class);
+    $clienteId = $repositoryCliente->all()->random()->id;
+
+    //código da categoria
+    $repositoryCategoria = app(\App\Repositories\CategoriaRepository::class);
+    $categoriaId = $repositoryCategoria->all()->random()->id;
+
+
+    return [
+        'nome' => $faker->word,
+        'descricao' => $faker->word,
+        'id_categoria' => $categoriaId,
+        'id_cliente' => $clienteId,
+
+    ];
+});
+
+
+

@@ -36,6 +36,7 @@ class ClientesController extends Controller
      * @param ClienteRepository $repository
      * @param ClienteValidator $validator
      */
+
     public function __construct(ClienteRepository $repository)
     {
         $this->repository = $repository;
@@ -50,7 +51,7 @@ class ClientesController extends Controller
     public function index()
     {
 
-        $clientes = Cliente::paginate(5);
+        $clientes = $this->repository->paginate(10);
         return view('admin.clientes.index', ['clientes' => $clientes]);
     }
 
@@ -82,6 +83,7 @@ class ClientesController extends Controller
             }
 
             return redirect()->to(\URL::previous())->with('message', $response['message']);
+
         } catch (ValidatorException $e) {
             if ($request->wantsJson()) {
                 return response()->json([
@@ -200,6 +202,6 @@ class ClientesController extends Controller
             ]);
         }
 
-        return redirect()->to(\URL::previous())->with('message', 'Cliente deleted.');
+        return redirect()->to(\URL::previous())->with('message', 'Cliente Excluído.');
     }
 }

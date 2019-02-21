@@ -152,6 +152,8 @@ return [
          */
         Collective\Html\HtmlServiceProvider::class,
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        JeroenNoten\LaravelAdminLte\ServiceProvider::class,
+
 
 
 

@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use App\Repositories\CategoriaRepository;
 
 class CategoriaController extends Controller
 {
+
+
+    public function __construct(CategoriaRepository $repository)
+    {
+        $this->repository = $repository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,10 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        $categorias = Categoria::paginate(5);
+        //$categorias = Categoria::paginate(5);
+
+        $categorias = $this->repository->paginate(10);
+
         return View('admin.categorias.index', ['categorias' => $categorias]);
     }
 
