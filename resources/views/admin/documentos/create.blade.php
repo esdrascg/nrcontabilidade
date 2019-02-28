@@ -25,10 +25,7 @@
             {!! Form::label('descricao', 'Descrição'); !!}
             {!! Form::text('descricao', null, ['class' => 'form-control']); !!}
         </div>
-        <div class="form-group">
-            {!! Form::label('password', 'PassWord'); !!}
-            {!! Form::password('password', ['class' => 'form-control']); !!}
-        </div>
+
         <div class="form-group">
             {!! Form::submit('Criar', ['class'=>'btn btn-primary'] ); !!}
         </div>

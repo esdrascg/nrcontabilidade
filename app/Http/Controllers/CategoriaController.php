@@ -46,7 +46,39 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+
+            //$this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+            $dados = $request->all();
+            $documento = $this->repository->create($dados);
+
+            $response = [
+                'message' => 'Categoria criada.',
+                'data'    => $documento->toArray(),
+            ];
+
+            if ($request->wantsJson()) {
+                return response()->json($response);
+            }
+
+            $url = $request->get('redirect_to', route('categorias.index'));
+            $request->session()->flash('message', 'Categoria criada!');
+            return redirect()->to($url);
+
+            //return redirect()->to(\URL::previous());
+            //return redirect()->back()->with('message', $response['message']);
+        }
+
+        catch (ValidatorException $e) {
+            if ($request->wantsJson()) {
+                return response()->json([
+                    'error'   => true,
+                    'message' => $e->getMessageBag()
+                ]);
+            }
+            return redirect()->to(\URL::previous());
+            //return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+        }
     }
 
     /**
@@ -95,6 +127,6 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
-        //
+        $this->repository->create($dados);
     }
 }

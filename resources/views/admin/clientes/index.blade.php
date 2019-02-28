@@ -10,7 +10,6 @@
             <tbody><tr>
                 <th style="width: 10px"></th>
                 <th>Nome</th>
-                <th>Email</th>
                 <th style="width: 10px"></th>
                 <th style="width: 10px"></th>
             </tr>
@@ -22,7 +21,6 @@
             <tr>
                 <td>{{ $cliente->id }}</td>
                 <td>{{ $cliente->nome }}</td>
-                <td>{{ $cliente->descricao }}</td>
                 <td>
                     <a href="{{ route('clientes.edit', ['clientes'=>$cliente->id]) }}">
                         <button type="button" class="btn btn-primary">

@@ -12,10 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
     //Route::resource('categorias', 'CategoriaController');
-
-
 });
 
 Auth::routes();
@@ -33,15 +31,8 @@ Route::group(['middleware' => ['auth']], function () {
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('usuarios', 'UserController');
 });
-
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('documentos', 'DocumentosController');
 });
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

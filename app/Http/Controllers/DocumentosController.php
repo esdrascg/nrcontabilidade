@@ -73,9 +73,14 @@ class DocumentosController extends Controller
     {
         try {
 
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+            //$this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $documento = $this->repository->create($request->all());
+            $dados = $request->all();
+
+            $dados['id_cliente'] = \Auth::user()->id;
+            $dados['id_categoria'] = \Auth::user()->id;
+
+            $documento = $this->repository->create($dados);
 
             $response = [
                 'message' => 'Documento criado.',
@@ -95,8 +100,8 @@ class DocumentosController extends Controller
                     'message' => $e->getMessageBag()
                 ]);
             }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+            return redirect()->to(\URL::previous());
+            //return redirect()->back()->withErrors($e->getMessageBag())->withInput();
         }
     }
 

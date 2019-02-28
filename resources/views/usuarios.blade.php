@@ -9,7 +9,7 @@
             <div class="col-4">{{ $user->name }}</div>
             <div class="col-4"><a href="{{ route("usuarios.edit", ['usuario'=> $user->id] )}}"><button type="button" class="btn btn-dark">Editar</button></a></div>
         @endforeach
-        </div>
+    </div>
 
     {{ $usuarios->links() }}
 

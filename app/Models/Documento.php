@@ -16,6 +16,8 @@ class Documento extends Model
         'id',
         'nome',
         'descricao',
+        'id_categoria',
+        'id_cliente',
     ];
 
     /**

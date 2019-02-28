@@ -15,19 +15,11 @@
             </div>
         @endif
 
-        {!! Form::open(['route' => 'documentos.store', 'class' => 'form']) !!}
+        {!! Form::open(['route' => 'categorias.store', 'class' => 'form']) !!}
         {!! Form::hidden('redirect_to', URL::previous()); !!}
         <div class="form-group">
             {!! Form::label('nome', 'Nome'); !!}
             {!! Form::text('nome', null, ['class' => 'form-control']); !!}
-        </div>
-        <div class="form-group">
-            {!! Form::label('descricao', 'Descrição'); !!}
-            {!! Form::text('descricao', null, ['class' => 'form-control']); !!}
-        </div>
-        <div class="form-group">
-            {!! Form::label('password', 'PassWord'); !!}
-            {!! Form::password('password', ['class' => 'form-control']); !!}
         </div>
         <div class="form-group">
             {!! Form::submit('Criar', ['class'=>'btn btn-primary'] ); !!}
