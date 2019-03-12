@@ -3,8 +3,14 @@
 @section('content')
 <div class="container">
     <div class="row">
-        Usuário Logado: {{$logado}}
-        - {{$codigo_usuario}}
+        Usuário Logado: {{$logado}} - {{$codigo_usuario}}
+    </div>
+    <div class="row">
+        {{ Form::model(compact('search'),
+            ['class' => 'form-inline', 'method' => 'GET']) }}
+        {{ Form::text('search',null, ['lass' => 'form-control']) }}
+        {{ Form::submit('Buscar', array('class' => 'btn btn-primary')) }}
+        {{ Form::close() }}
     </div>
     <div class="box-header with-border">
         <a href="{{ route('usuarios.create') }}"><button type="button" class="btn btn-primary">Criar Usuário</button></a>

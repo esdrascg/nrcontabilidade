@@ -10,6 +10,7 @@ use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\DocumentoCreateRequest;
 use App\Http\Requests\DocumentoUpdateRequest;
 use App\Repositories\DocumentoRepository;
+use App\Repositories\CategoriaRepository;
 
 /**
  * Class DocumentosController.
@@ -34,9 +35,10 @@ class DocumentosController extends Controller
      * @param DocumentoRepository $repository
      * @param DocumentoValidator $validator
      */
-    public function __construct(DocumentoRepository $repository)
+    public function __construct(DocumentoRepository $repository, CategoriaRepository $categoriaRepository)
     {
         $this->repository = $repository;
+        $this->categoriaRepository = $categoriaRepository;
         //$this->validator  = $validator;
     }
 
@@ -57,7 +59,9 @@ class DocumentosController extends Controller
 
     public function create()
     {
-        return view('admin.documentos.create');
+        $categorias = $this->categoriaRepository->pluck('nome','id');
+
+        return view('admin.documentos.create', compact('categorias'));
     }
 
     /**

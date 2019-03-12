@@ -25,7 +25,10 @@
             {!! Form::label('descricao', 'Descrição'); !!}
             {!! Form::text('descricao', null, ['class' => 'form-control']); !!}
         </div>
-
+        <div class="form-group">
+            {!! Form::label('categoria', 'Categoria'); !!}
+            {!! Form::select('categoria[]', $categorias, null, ['class' => 'form-control', 'multiple' => true ]); !!}
+        </div>
         <div class="form-group">
             {!! Form::submit('Criar', ['class'=>'btn btn-primary'] ); !!}
         </div>

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Criteria\FindByUserCriteria;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\UserRepository;
+
+use Illuminate\Http\Request;
 
 
 class UserController extends Controller
@@ -21,8 +24,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->get('search');
 
         $logado = auth()->user()->name;
 
@@ -32,7 +36,7 @@ class UserController extends Controller
 
         $usuarios = $this->repository->paginate(10);
 
-        return view('admin.users.index', compact('usuarios','logado', 'codigo_usuario' ) );
+        return view('admin.users.index', compact('usuarios','logado', 'codigo_usuario', 'search' ) );
 
     }
 
