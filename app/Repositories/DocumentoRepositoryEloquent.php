@@ -32,9 +32,9 @@ class DocumentoRepositoryEloquent extends BaseRepository implements DocumentoRep
 
     public function update(array $attributes, $id)
     {
-        $model =  parent::update($attributes, $id);
-        $model->categorias()->sync($attributes['categoria']);
-        return $model;
+        //$model =  parent::update($attributes, $id);
+        //$model->categorias()->sync($attributes['categoria']);
+        //return $model;
     }
 
 
