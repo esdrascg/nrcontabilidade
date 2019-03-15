@@ -25,7 +25,8 @@ class DocumentoCreateRequest extends FormRequest
     {
         return [
             'nome' => 'required|unique:documentos,nome',
-            'descricao' => 'required'
+            'descricao' => 'required',
+            'categorias' => 'exists:categorias,id'
         ];
     }
 }

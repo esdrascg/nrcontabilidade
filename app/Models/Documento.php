@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Collective\Html\Eloquent\FormAccessible;
 
 class Documento extends Model
 {
+    use FormAccessible;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -33,6 +35,10 @@ class Documento extends Model
 
     public function categorias(){
         return $this->belongsToMany(Categoria::class);
+    }
+
+    public function formCategoriasAtribute(){
+        return $this->categorias->pluck('id')->all();
     }
 
 
