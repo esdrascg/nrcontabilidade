@@ -127,7 +127,7 @@ class DocumentosController extends Controller
             ]);
         }
 
-        return view('documentos.show', compact('documento'));
+        return view('admin.documentos.show', compact('documento'));
     }
 
     /**
@@ -141,7 +141,10 @@ class DocumentosController extends Controller
     {
         $documento = $this->repository->find($id);
 
-        return view('admin.documentos.edit', compact('documento'));
+        $categorias = $this->categoriaRepository->pluck('nome','id');
+
+
+        return view('admin.documentos.edit', compact('documento', 'categorias'));
     }
 
     /**

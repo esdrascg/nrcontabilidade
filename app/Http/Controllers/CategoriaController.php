@@ -125,8 +125,21 @@ class CategoriaController extends Controller
      * @param  \App\Models\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categoria $categoria)
+    public function destroy($id)
     {
-        $this->repository->create($dados);
+        $deleted = $this->repository->delete($id);
+
+        if (request()->wantsJson()) {
+
+            return response()->json([
+                'message' => 'Documento deleted.',
+                'deleted' => $deleted,
+            ]);
+        }
+
+
+        \Session::flash('message', 'Documento excluído!');
+
+        return redirect()->to(\URL::previous());
     }
 }

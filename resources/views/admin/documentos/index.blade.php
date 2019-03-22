@@ -13,6 +13,7 @@
                 <th>Email</th>
                 <th style="width: 10px"></th>
                 <th style="width: 10px"></th>
+                <th style="width: 10px"></th>
             </tr>
             @foreach ($documentos as $documento)
 
@@ -23,6 +24,13 @@
                 <td>{{ $documento->id }}</td>
                 <td>{{ $documento->nome }}</td>
                 <td>{{ $documento->descricao }}</td>
+                <td>
+                    <a href="{{ route('documentos.show', ['documentos'=>$documento->id]) }}">
+                        <button type="button" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-list-alt"></span>
+                        </button>
+                    </a>
+                </td>
                 <td>
                     <a href="{{ route('documentos.edit', ['documentos'=>$documento->id]) }}">
                         <button type="button" class="btn btn-primary">

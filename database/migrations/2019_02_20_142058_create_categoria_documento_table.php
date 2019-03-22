@@ -17,7 +17,9 @@ class CreateCategoriaDocumentoTable extends Migration
             $table->integer('documento_id')->unsigned();
             $table->foreign('documento_id')->references('id')->on('documentos');
             $table->integer('categoria_id')->unsigned();
-            $table->foreign('categoria_id')->references('id')->on('categorias');
+            $table->foreign('categoria_id')->references('id')
+                    ->on('categorias')
+                    ->onDelete('cascade');
         });
     }
 

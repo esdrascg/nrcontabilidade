@@ -26,8 +26,8 @@
             {!! Form::text('descricao', null, ['class' => 'form-control']); !!}
         </div>
         <div class="form-group">
-            {!! Form::label('categoria', 'Categoria'); !!}
-            {!! Form::select('categoria[]', [], null, ['class' => 'form-control', 'multiple' => true ]); !!}
+            {!! Form::label('categorias', 'Categorias'); !!}
+            {!! Form::select('categorias[]', $categorias, null, ['class' => 'form-control', 'multiple' => true ]); !!}
         </div>
 
         <div class="form-group">
