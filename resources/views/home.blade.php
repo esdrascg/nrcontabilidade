@@ -8,4 +8,10 @@
 
 @section('content')
     <p>Você está logado!</p>
+
+    {!! Modal::named('teste-popup')
+    ->withTitle('Example modal title')
+    ->withBody('Example modal body')
+    ->withFooter('Example modal footer') !!}
+
 @stop

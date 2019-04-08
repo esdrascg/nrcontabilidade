@@ -13,6 +13,10 @@ use App\Models\Documento;
  */
 class DocumentoRepositoryEloquent extends BaseRepository implements DocumentoRepository
 {
+    protected $fieldSearchable = [
+        'nome' => 'like',
+        'descricao' => 'like'
+    ];
     /**
      * Specify Model class name
      *

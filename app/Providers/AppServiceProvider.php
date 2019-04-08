@@ -28,5 +28,8 @@ class AppServiceProvider extends ServiceProvider
                 return \Faker\Factory::create(env('FAKER_LANGUAGE'));
             });
         }
+        if ($this->app->environment() !== 'production') {
+            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+        }
     }
 }

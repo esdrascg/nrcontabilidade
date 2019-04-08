@@ -26,7 +26,26 @@ class DocumentoCreateRequest extends FormRequest
         return [
             'nome' => 'required|unique:documentos,nome',
             'descricao' => 'required',
-            'categorias' => 'exists:categorias,id'
+            'categorias.*' => 'exists:categorias,id'
         ];
+    }
+
+    public function messages()
+    {
+        $result = [];
+        $categorias = $this->get('categorias',[]);
+        $count = count($categorias);
+        if(is_array($categorias) && $count > 0){
+            foreach (range(0,$count-1) as $value){
+                $field = \Lang::get('validation.attributes.categorias_*',[
+                    'num' => $value + 1
+                ]);
+                $message = \Lang::get('validation.exists',[
+                    'attribute' => $field
+                ]);
+                $result["categorias.$value.exists"] = $message;
+            }
+        }
+        return $result;
     }
 }

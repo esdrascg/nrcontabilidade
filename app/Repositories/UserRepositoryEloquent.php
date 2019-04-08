@@ -15,10 +15,11 @@ use App\Validators\UserValidator;
  */
 class UserRepositoryEloquent extends BaseRepository implements UserRepository
 {
-        protected $fieldSearchable = [
-            'name' => 'like',
-            'email' => 'like'
-        ];
+    protected $fieldSearchable = [
+        'name' => 'like',
+        'email' => 'like'
+    ];
+
     /**
      * Specify Model class name
      *
@@ -28,8 +29,6 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     {
         return User::class;
     }
-
-    
 
     /**
      * Boot up the repository, pushing criteria

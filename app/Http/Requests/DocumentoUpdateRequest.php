@@ -25,7 +25,9 @@ class DocumentoUpdateRequest extends FormRequest
     {
         return [
             'nome' => 'required',
-            'descricao' => 'required'
+            'descricao' => 'required',
+            'categorias' => 'required|array',
+            'categorias.*' => 'exists:categorias,id'
         ];
     }
 }

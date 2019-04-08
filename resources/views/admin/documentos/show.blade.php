@@ -19,11 +19,11 @@
 
         <div class="form-group">
             {!! Form::label('nome', 'Nome do Usuário'); !!}
-            {!! Form::text('nome', null, ['class' => 'form-control']); !!}
+            {{ $documento->nome }}
         </div>
         <div class="form-group">
             {!! Form::label('descricao', 'Descricao'); !!}
-            {!! Form::text('descricao', null, ['class' => 'form-control']); !!}
+            {{ $documento->descricao }}
         </div>
         <div class="form-group">
 
