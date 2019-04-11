@@ -2,6 +2,8 @@
 
 @section('content')
 
+
+
 <div class="container">
     <h3>Novo Documento</h3>
 
@@ -15,24 +17,37 @@
             </div>
         @endif
 
+        {!! Badge::withContents(10) !!}
+
+        {!! Label::danger('Cuidado') !!}
+
+        {!! ProgressBar::info(40) !!}
+
+        {!!
+            DropdownButton::normal('Small')
+              ->withContents([
+                   ['url' => '#', 'label' => 'First'],
+                   ['url' => '#', 'label' => 'Second']
+                ])
+            ->small() !!}
+
         {!! Form::open(['route' => 'documentos.store', 'class' => 'form']) !!}
         {!! Form::hidden('redirect_to', URL::previous()); !!}
-        <div class="form-group">
-            {!! Form::label('nome', 'Nome'); !!}
-            {!! Form::text('nome', null, ['class' => 'form-control']); !!}
-        </div>
-        <div class="form-group">
-            {!! Form::label('descricao', 'Descrição'); !!}
-            {!! Form::text('descricao', null, ['class' => 'form-control']); !!}
-        </div>
 
-        <div class="form-group"><div class="form-group">
-                {!! Form::label('categorias', 'Categorias'); !!}
-                {!! Form::select('categorias[]', $categorias, null, ['class' => 'form-control', 'multiple' => true ]); !!}
+            @include('admin.documentos._form')
+
+            <div class="form-group">
+                {!! Form::submit('Criar', ['class'=>'btn btn-primary'] ); !!}
             </div>
-            {!! Form::submit('Criar', ['class'=>'btn btn-primary'] ); !!}
-        </div>
+
         {!! Form::close() !!}
 
 </div>
+<script>
+
+    //$(document).ready(function() {
+        $('.form-control').select2();
+    //});
+
+</script>
 @endsection

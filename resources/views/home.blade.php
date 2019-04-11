@@ -12,6 +12,6 @@
     {!! Modal::named('teste-popup')
     ->withTitle('Example modal title')
     ->withBody('Example modal body')
-    ->withFooter('Example modal footer') !!}
+    ->withFooter('Example modal footer'); !!}
 
 @stop

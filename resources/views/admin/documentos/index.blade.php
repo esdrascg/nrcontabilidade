@@ -5,6 +5,15 @@
     <div class="box-header with-border">
         <a href="{{ route('documentos.create') }}"><button type="button" class="btn btn-primary">Novo Documento</button></a>
     </div>
+
+    {!!
+        Table::withContents($documentos->items())->striped()
+        ->callback('Ações', function($fiels,$documento){
+            $link_edit = route('documentos.edit', ['documentos'=>$documento->id]);
+            return Button::link('Editar')->asLinkTo($link_edit);
+        })
+    !!}
+
     <div class="box box-primary">
         <table class="table table-condensed">
             <tbody><tr>
